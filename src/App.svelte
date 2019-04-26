@@ -2,10 +2,16 @@
   import Profile from './Profile.svelte';
   import Todos from './Todos.svelte';
   import firebase, { auth } from './firebase';
-  import { authState } from 'rxfire/auth';
 
   let user;
-  const unsubscribe = authState(auth()).subscribe(u => (user = u));
+
+  const setUser = u => {
+    if (u) {
+      user = u;
+    }
+  };
+
+  const unsub = auth().onAuthStateChanged(setUser);
 
   function login() {
     auth().signInWithPopup(new auth.GoogleAuthProvider());
