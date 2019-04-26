@@ -1,6 +1,6 @@
 <script>
   import Profile from './Profile.svelte';
-
+  import Todos from './Todos.svelte';
   import firebase, { auth } from './firebase';
   import { authState } from 'rxfire/auth';
 
@@ -18,6 +18,7 @@
     <Profile {...user} />
     <button on:click={ () => auth().signOut() }>Logout</button>
     <hr>
+    <Todos uid={user.uid}/>
 {:else}
 	<button on:click={login}>
 		Signin with Google
