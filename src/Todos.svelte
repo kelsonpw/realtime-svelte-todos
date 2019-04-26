@@ -6,7 +6,7 @@
 
   export let uid;
 
-  export let text = 'some task';
+  export let text = '';
 
   const query = db
     .collection('todos')
@@ -22,6 +22,7 @@
       complete: false,
       created: Date.now(),
     });
+    text = '';
   }
 
   function update(evt) {
