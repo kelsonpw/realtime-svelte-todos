@@ -1,11 +1,5 @@
 <script>
-	export let name;
+	import Login from './Login.svelte';
 </script>
 
-<style>
-	h1 {
-	  color: purple;
-	}
-</style>
-
-<h1>Hello {name} how the heck are ya man?!</h1>
+<Login/>
