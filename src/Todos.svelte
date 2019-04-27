@@ -7,16 +7,14 @@
   export let uid;
 
   export let text = '';
+  const collection = db.collection('todos');
 
-  const query = db
-    .collection('todos')
-    .where('uid', '==', uid)
-    .orderBy('created');
+  const query = collection.where('uid', '==', uid).orderBy('created');
 
   const todos = collectionData(query, 'id').pipe(startWith([]));
 
   function add() {
-    db.collection('todos').add({
+    collection.add({
       uid,
       text,
       complete: false,
@@ -27,16 +25,12 @@
 
   function update(evt) {
     const { id, newStatus } = evt.detail;
-    db.collection('todos')
-      .doc(id)
-      .update({ complete: newStatus });
+    collection.doc(id).update({ complete: newStatus });
   }
 
   function remove(evt) {
     const { id } = evt.detail;
-    db.collection('todos')
-      .doc(id)
-      .delete();
+    collection.doc(id).delete();
   }
 </script>
 
